@@ -9,7 +9,7 @@ description = "Montecarlo Simulation Stock Prices"
 authors = [{name="Rocco", email="roccolautarorodriguez@gmail.com"}]
 readme = "README.md"
 requires-python = ">=3.9"
-dependencies = ["yfinance", "pandas", "numpy", "scipy", "matplotlib", "streamlit"]
+dependencies = ["yfinance", "pandas", "numpy", "scipy", "matplotlib", "streamlit", "curl_cffi"]
 
 [tool.setuptools.packages.find]
 where = ["src"]
