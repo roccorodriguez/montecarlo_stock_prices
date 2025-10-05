@@ -1,6 +1,7 @@
 import streamlit as st
 from PIL import Image
 from montecarlo_simulation.main import main
+from curl_cffi.requests.exceptions import HTTPError
 
 st.set_page_config(layout="wide")
 
@@ -65,18 +66,23 @@ st.sidebar.markdown(
     """,
     unsafe_allow_html=True
 )
-ticker = st.sidebar.text_input("Ticker")
+
+ticker = st.sidebar.text_input(
+    "Ticker",
+    value="MSFT"
+)
+
 iteraciones = st.sidebar.number_input(
     "Cantidad de días a simular",
     min_value=1,
     step=1,
-    value=1000
+    value=60
 )
 n_simulaciones = st.sidebar.number_input(
     "Cantidad de simulaciones",
     min_value=10,
     step=1,
-    value=10
+    value=100
 )
 
 if st.sidebar.checkbox("Personalizar drift"):
@@ -89,9 +95,13 @@ if st.sidebar.checkbox("Personalizar drift"):
         format="%.5f")
 else: drift_simulado = None
 
-if st.sidebar.button("Correr simulación"):
-    drift_historico, precio_min, precio_max, retorno_min, retorno_max, p_ganancia, p_perdida, p10, p90 = main(ticker, iteraciones, n_simulaciones, drift_simulado)
-    
+def mostrar_simulacion():
+    try:
+        drift_historico, precio_min, precio_max, retorno_min, retorno_max, p_ganancia, p_perdida, p10, p90 = main(ticker, iteraciones, n_simulaciones, drift_simulado)
+    except HTTPError:
+        st.error(f"❌ El ticker '{ticker}' no existe o no se pudo obtener información.")
+        return
+
     min_placeholder.metric("Mínimo ($)", f"{precio_min:.2f}")
     max_placeholder.metric("Máximo ($)", f"{precio_max:.2f}")
     ret_min_placeholder.metric("Mínimo (%)", f"{retorno_min:.2%}")
@@ -112,3 +122,15 @@ if st.sidebar.button("Correr simulación"):
 
     col1.image(img1, caption="Evolución de precios", width=600)
     col2.image(img2, caption="Distribución de precios finales", width=600)
+
+if "primera_vez" not in st.session_state:
+    st.session_state.primera_vez = True
+
+if st.session_state.primera_vez:
+    mostrar_simulacion()
+    st.session_state.primera_vez = False
+
+if st.sidebar.button("Correr simulación"):
+    if not ticker.strip():
+        st.warning("⚠️ Ingresá un ticker antes de correr la simulación.")
+    else: mostrar_simulacion()
