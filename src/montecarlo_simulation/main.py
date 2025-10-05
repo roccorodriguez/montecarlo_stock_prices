@@ -1,10 +1,10 @@
 import pandas as pd
 import os
-from src.core.data import *
-from src.core.brownian_motion import *
-from src.core.montecarlo import *
-from src.core.graficos import *
-from src.core.estadisticos import *
+from src.montecarlo_simulation.core.data import *
+from src.montecarlo_simulation.core.brownian_motion import *
+from src.montecarlo_simulation.core.montecarlo import *
+from src.montecarlo_simulation.core.graficos import *
+from src.montecarlo_simulation.core.estadisticos import *
 
 def main(ticker: str, iteraciones: int, n_simulaciones: int, drift_simulado=None):
     precios = extraer_precios(ticker)
@@ -24,6 +24,3 @@ def main(ticker: str, iteraciones: int, n_simulaciones: int, drift_simulado=None
     p10, p90 = percentiles(simulacion)
 
     return drift_historico[0], precio_min, precio_max, retorno_min, retorno_max, p_ganancia, p_perdida, p10, p90
-
-if __name__ == "__main__":
-    main("PG", 1000, 100)

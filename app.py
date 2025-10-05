@@ -1,15 +1,6 @@
-import sys
-import os
-
-current_dir = os.path.dirname(os.path.abspath(__file__)) 
-project_root = os.path.join(current_dir, '..', '..')
-
-if project_root not in sys.path:
-    sys.path.append(project_root)
-
 import streamlit as st
 from PIL import Image
-from src.main.main import main
+from montecarlo_simulation.main import main
 
 st.set_page_config(layout="wide")
 

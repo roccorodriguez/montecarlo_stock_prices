@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "montecarlo_simulation"
+version = "0.1.0"
+description = "Montecarlo Simulation Stock Prices"
+authors = [{name="Rocco", email="roccolautarorodriguez@gmail.com"}]
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = ["yfinance", "pandas", "numpy", "scipy", "matplotlib", "streamlit"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
