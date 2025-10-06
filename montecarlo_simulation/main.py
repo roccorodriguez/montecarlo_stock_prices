@@ -1,10 +1,10 @@
 import pandas as pd
 import os
-from src.montecarlo_simulation.core.data import *
-from src.montecarlo_simulation.core.brownian_motion import *
-from src.montecarlo_simulation.core.montecarlo import *
-from src.montecarlo_simulation.core.graficos import *
-from src.montecarlo_simulation.core.estadisticos import *
+from montecarlo_simulation.core.data import *
+from montecarlo_simulation.core.brownian_motion import *
+from montecarlo_simulation.core.montecarlo import *
+from montecarlo_simulation.core.graficos import *
+from montecarlo_simulation.core.estadisticos import *
 
 def main(ticker: str, iteraciones: int, n_simulaciones: int, drift_simulado=None):
     precios = extraer_precios(ticker)
