@@ -1,6 +1,6 @@
 import streamlit as st
 from PIL import Image
-from montecarlo_simulation.main import main
+from montecarlo_simulation import main
 from curl_cffi.requests.exceptions import HTTPError
 
 st.set_page_config(layout="wide")
@@ -97,7 +97,7 @@ else: drift_simulado = None
 
 def mostrar_simulacion():
     try:
-        drift_historico, precio_min, precio_max, retorno_min, retorno_max, p_ganancia, p_perdida, p10, p90 = main(ticker, iteraciones, n_simulaciones, drift_simulado)
+        drift_historico, precio_min, precio_max, retorno_min, retorno_max, p_ganancia, p_perdida, p10, p90 = main.main(ticker, iteraciones, n_simulaciones, drift_simulado)
     except HTTPError:
         st.error(f"❌ El ticker '{ticker}' no existe o no se pudo obtener información.")
         return
