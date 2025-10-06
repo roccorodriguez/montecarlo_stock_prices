@@ -1,4 +1,4 @@
-# Monte Carlo Simulation Stock Prices
+# Monte Carlo Stock Price Simulation Dashboard
 
 Este repositorio provee un dashboard interactivo que permite visualizar los resultados de una simulación de Monte Carlo para la proyección futura del precio de una acción. El dashboard está diseñado para ser amigable e interactivo, permitiendo a los usuarios elegir la acción a analizar y explorar cómo cambios en el drift y en otros parámetros modifican los resultados finales.
 
