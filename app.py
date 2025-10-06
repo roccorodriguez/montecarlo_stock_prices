@@ -9,7 +9,7 @@ linkedin_url = "https://www.linkedin.com/in/rocco-rodriguez/"
 linkedin_logo_url = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/LinkedIn_icon.svg/2048px-LinkedIn_icon.svg.png" 
 linkedin_texto = "Rocco Rodriguez"
 
-st.title("Monte Carlo Simulation Stock Prices")
+st.title("Monte Carlo Stock Price Simulation")
 
 with st.container(border=True):
     col_precio_min, col_precio_max, col_pganancia, col_drift_historico, col_p10= st.columns(5)
@@ -46,7 +46,7 @@ with st.container(border=True):
         p90_placeholder = st.empty()
         p90_placeholder.metric("P90 (Percentil 90)", "-")
 
-st.sidebar.header("🧮 Monte Carlo Simulation Stock Prices")
+st.sidebar.header("🧮 Monte Carlo Stock Price Simulation")
 st.sidebar.markdown(
     f"""
     <div style="display: flex; align-items: center; gap: 10px; margin-left: 3px; margin-bottom: 20px;">
